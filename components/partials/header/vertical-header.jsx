@@ -8,6 +8,8 @@ import Link from "next/link";
 import { useMediaQuery } from "@/hooks/use-media-query";
 
 const MenuBar = ({ collapsed, setCollapsed }) => {
+  // setCollapsed(true)
+  return null
   return (
     <button
       className="relative group  disabled:cursor-not-allowed opacity-50"

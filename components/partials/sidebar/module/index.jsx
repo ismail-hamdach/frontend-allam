@@ -181,7 +181,7 @@ const ModuleSidebar = ({ trans }) => {
         </div>
         {/* end small menu */}
 
-        <div
+        {/* <div
           className={cn(
             "border-default-200 pointer-events-auto relative z-10 flex flex-col h-full w-[228px] border-r  bg-card   transition-all duration-300",
             {
@@ -241,7 +241,7 @@ const ModuleSidebar = ({ trans }) => {
             </div>
           </ScrollArea>
           <LogoutFooter />
-        </div>
+        </div> */}
         {/* end main panel */}
       </div>
       {!isDesktop && (

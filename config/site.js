@@ -1,10 +1,10 @@
 export const siteConfig = {
-  name: "DashTail Next js Admin Template",
+  name: "Allam Education Platform",
   description: null,
-  theme: "violet",
+  theme: "blue",
   layout: "vertical",
   // semi-box, horizontal, vertical
-  hideSideBar: false,
+  hideSideBar: true,
   sidebarType: "module",
   // popover, classic, module
   sidebarColor: null,

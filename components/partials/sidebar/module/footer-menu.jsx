@@ -10,7 +10,7 @@ const FooterMenu = () => {
       <button className="w-11 h-11  mx-auto text-default-500 flex items-center justify-center  rounded-md transition-all duration-200 hover:bg-primary hover:text-primary-foreground">
         <Settings className=" h-8 w-8" />
       </button>
-      <div>
+      {/* <div>
         <Image
           src={avatar5}
           alt=""
@@ -18,7 +18,7 @@ const FooterMenu = () => {
           height={36}
           className="rounded-full"
         />
-      </div>
+      </div> */}
     </div>
   );
 };

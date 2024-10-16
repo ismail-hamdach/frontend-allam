@@ -29,7 +29,7 @@ export const useThemeStore = create((set) => ({
 }));
 
 export const useSidebar = create((set) => ({
-  collapsed: false,
+  collapsed: true,
   setCollapsed: (value) => set({ collapsed: value }),
   sidebarType:
     siteConfig.layout === "semibox" ? "popover" : siteConfig.sidebarType,
