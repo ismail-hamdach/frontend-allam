@@ -39,8 +39,8 @@ export function middleware(request) {
 
     // e.g. incoming request is /products
     // The new URL is now /en-US/products
-    const basePath = process.env.NODE_ENV !== "development" ? `/app/${locale}` : `/${locale}`;
-
+    const basePath = !isDevelopment ? `/app/${locale}` : `/${locale}`;
+    console.log(basePath)
     return NextResponse.redirect(
       new URL(`${basePath}/${pathname}`, request.url)
     );

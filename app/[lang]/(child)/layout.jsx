@@ -1,3 +1,4 @@
+
 import DashBoardLayoutProvider from "@/provider/dashboard.layout.provider";
 import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
@@ -9,6 +10,8 @@ const layout = async ({ children, params: { lang } }) => {
   if (!session?.user?.email) {
     redirect("/auth/login");
   }
+
+  
 
   const trans = await getDictionary(lang);
 
