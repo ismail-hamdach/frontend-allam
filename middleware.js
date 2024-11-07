@@ -15,34 +15,21 @@ function getLocale(request) {
 }
 
 export function middleware(request) {
-  const isDevelopment = process.env.NODE_ENV === 'development';
-
   // Check if there is any supported locale in the pathname
   const pathname = request.nextUrl.pathname;
 
-  const detectLinkPathIsMissing = () => {
-    if (isDevelopment) {
-      return locales.every(
-        (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
-      );
-    } else {
-      return locales.every(
-        (locale) => !pathname.startsWith(`/app/${locale}/`) && pathname !== `/app/${locale}`
-      );
-    }
-  }
+  const pathnameIsMissingLocale = locales.every(
+    (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
+  );
 
-  const pathnameIsMissingLocale = detectLinkPathIsMissing()
   // Redirect if there is no locale
   if (pathnameIsMissingLocale) {
     const locale = getLocale(request);
 
     // e.g. incoming request is /products
     // The new URL is now /en-US/products
-    const basePath = !isDevelopment ? `/app/${locale}` : `/${locale}`;
-    console.log(basePath)
     return NextResponse.redirect(
-      new URL(`${basePath}/${pathname}`, request.url)
+      new URL(`/${locale}/${pathname}`, request.url)
     );
   }
 }
