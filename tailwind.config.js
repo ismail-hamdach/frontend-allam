@@ -3,9 +3,9 @@ module.exports = {
   important: true,
   darkMode: ["class"],
   content: [
-    "./pages/**/*.{js,jsx,css,,md,mdx}",
+    "./pages/**/*.{js,jsx,css,scss,,md,mdx}",
     "./components/**/*.{js,jsx,md,mdx}",
-    "./app/**/*.{js,jsx,css,md,mdx}",
+    "./app/**/*.{js,jsx,css,scss,md,mdx}",
     "./src/**/*.{js,jsx,md,mdx}",
   ],
   theme: {

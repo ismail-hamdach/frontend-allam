@@ -13,14 +13,14 @@ import { SiteLogo } from "@/components/svg";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import LogoutFooter from "./logout-footer";
 import { useMediaQuery } from "@/hooks/use-media-query";
+import { useUserRole } from "@/hooks/use-user-role";
 import MenuOverlayPortal from "./MenuOverlayPortal";
 import { ChevronLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const ModuleSidebar = ({ trans }) => {
-  const menus = menusConfig?.sidebarNav?.modern || [];
   const { subMenu, setSubmenu, collapsed, setCollapsed, sidebarBg } =
-    useSidebar();
+  useSidebar();
   const { isRtl } = useThemeStore();
   const [activeIndex, setActiveIndex] = useState(null);
   const [currentSubMenu, setCurrentSubMenu] = useState([]);
@@ -30,7 +30,9 @@ const ModuleSidebar = ({ trans }) => {
   const [menuOverlay, setMenuOverlay] = useState(false);
   const isDesktop = useMediaQuery("(min-width: 1280px)");
   const isMobile = useMediaQuery("(min-width: 768px)");
-
+  const {userRole} = useUserRole();
+  
+  const menus = userRole == "child" ? menusConfig?.sidebarNav?.modern?.child : menusConfig?.sidebarNav?.modern?.parent || [];
   // location
 
   const pathname = usePathname();
@@ -139,7 +141,7 @@ const ModuleSidebar = ({ trans }) => {
     if (!isDesktop) {
       setSubmenu(true);
     }
-  }, [locationName, isDesktop]);
+  }, [locationName, isDesktop, userRole]);
 
   return (
     <>

@@ -9,19 +9,34 @@ import HorizontalHeader from "./horizontal-header";
 import Inbox from "./inbox";
 import HorizontalMenu from "./horizontal-menu";
 import NotificationMessage from "./notification-message";
-
+import { useRouter } from 'next/navigation';
 import Language from "./language";
 import { useMediaQuery } from "@/hooks/use-media-query";
+import { useUserRole } from "@/hooks/use-user-role";
 import MobileMenuHandler from "./mobile-menu-handler";
 import ClassicHeader from "./layout/classic-header";
 import FullScreen from "./full-screen";
 
 const NavTools = ({ isDesktop, isMobile, sidebarType }) => {
+  const { userRole, updateUserRole } = useUserRole();
+  const router = useRouter(); // Add this line to import the router
+
+  const handleRoleSwitch = () => {
+    const newRole = userRole === "child" ? "parent" : "child";
+    updateUserRole(newRole);
+    router.push(newRole == "child" ? "/advancement" : "/dashboard");
+  };
+
   return (
     <div className="nav-tools flex items-center  gap-2">
+      {/* {isDesktop && <FullScreen />} */}
+      <div className="flex text-sm text-default-600 capitalize">
+        <p>Switch to : </p>
+        <button onClick={handleRoleSwitch}>
+          {userRole === "child" ? "Parent" : "Child"}
+        </button>
+      </div>
       {isDesktop && <Language />}
-      {isDesktop && <FullScreen />}
-
       <ThemeButton />
       <Inbox />
       <NotificationMessage />
@@ -41,6 +56,7 @@ const Header = ({ handleOpenSearch, trans }) => {
   const isDesktop = useMediaQuery("(min-width: 1280px)");
 
   const isMobile = useMediaQuery("(min-width: 768px)");
+
 
   // set header style to classic if isDesktop
   React.useEffect(() => {
@@ -162,7 +178,7 @@ const Header = ({ handleOpenSearch, trans }) => {
       </ClassicHeader>
     );
   }
-
+  // this is the navbar used in this project
   return (
     <ClassicHeader
       className={cn("", {

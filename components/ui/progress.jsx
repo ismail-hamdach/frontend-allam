@@ -51,7 +51,7 @@ const circleVariants = cva("[&_[path-color]]:text-default-200 ", {
   },
   defaultVariants: {
     color: "primary",
-    size: "md",
+    size: "2xl",
   },
 });
 const Progress = React.forwardRef(

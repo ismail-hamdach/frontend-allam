@@ -1,8 +1,9 @@
 "use client"; // Error components must be Client Components
 
 import { useEffect } from "react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+
 import { Info } from "lucide-react";
 
 export default function Error({ error, reset }) {

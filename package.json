@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emoji-mart/data": "^1.2.1",
+    "@emoji-mart/react": "^1.1.1",
     "@formatjs/intl-localematcher": "^0.5.4",
     "@hookform/resolvers": "^3.9.0",
     "@iconify/react": "^4.1.1",
@@ -40,7 +42,7 @@
     "@radix-ui/react-tooltip": "^1.0.6",
     "@smastrom/react-rating": "^1.4.0",
     "@tanstack/react-query": "^5.8.3",
-    "autoprefixer": "^10.4.20",
+    "apexcharts": "^3.54.1",
     "axios": "^1.6.1",
     "bcrypt": "^5.1.1",
     "class-variance-authority": "^0.7.0",
@@ -56,6 +58,7 @@
     "next-auth": "^4.24.5",
     "next-themes": "^0.2.1",
     "react": "18.2.0",
+    "react-apexcharts": "^1.4.4",
     "react-day-picker": "^8.8.1",
     "react-dom": "18.2.0",
     "react-flatpickr": "^3.10.13",
@@ -77,6 +80,10 @@
     "@faker-js/faker": "^9.0.3",
     "@svgr/webpack": "^8.1.0",
     "@types/node": "^22.7.5",
-    "@types/react": "^18.3.11"
+    "@types/react": "^18.3.11",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.14",
+    "typescript": "5.6.3"
   }
 }
