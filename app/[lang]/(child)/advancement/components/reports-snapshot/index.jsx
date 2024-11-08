@@ -8,9 +8,8 @@ import { themes } from "@/config/thems";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import DashboardSelect from "@/components/dasboard-select";
 import { cn } from "@/lib/utils";
-import WidthValue from "../progress-with-value";
 import EcommerceStats from "../ecommerce-stats";
-
+import WidthValue from "../progress-with-value/index"
 
 const ReportsSnapshot = () => {
 
