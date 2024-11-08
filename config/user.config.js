@@ -2,10 +2,18 @@ import { api } from "@/config/axios.config";
 
 export const registerUser = async (data) => {
   try {
-    const response = await api.post("/user/register", data);
+    const response = await api.post(process.env.NEXT_CMS_URL + "/auth/local/register", {
+      username: data.username,
+      email: data.email,
+      password: data.password
+    });
 
-    return response.data;
+    return {
+      user: response.data.user,
+      jwt: response.data.jwt
+    };
   } catch (error) {
-    return error.response.data;
+    const message = error.response?.data?.error?.message || 'Registration failed';
+    throw new Error(message);
   }
 };

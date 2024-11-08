@@ -19,32 +19,33 @@ import Link from "next/link";
 
 const ProfileInfo = () => {
   const { data: session } = useSession();
+  const image = '/images/avatar/profile.png'
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild className=" cursor-pointer">
         <div className=" flex items-center  ">
-          {session?.user?.image && (
-            <Image
-              src={session?.user?.image}
-              alt={session?.user?.name ?? ""}
-              width={36}
-              height={36}
-              className="rounded-full"
-            />
-          )}
+
+          <Image
+            src={session?.user?.image ?? image}
+            alt={session?.user?.name ?? ""}
+            width={36}
+            height={36}
+            className="rounded-full"
+          />
+
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56 p-0" align="end">
         <DropdownMenuLabel className="flex gap-2 items-center mb-1 p-3">
-          {session?.user?.image && (
-            <Image
-              src={session?.user?.image}
-              alt={session?.user?.name ?? ""}
-              width={36}
-              height={36}
-              className="rounded-full"
-            />
-          )}
+
+          <Image
+            src={session?.user?.image ?? image}
+            alt={session?.user?.name ?? ""}
+            width={36}
+            height={36}
+            className="rounded-full"
+          />
+
           <div>
             <div className="text-sm font-medium text-default-800 capitalize ">
               {session?.user?.name ?? "Mcc Callem"}
@@ -62,22 +63,22 @@ const ProfileInfo = () => {
             {
               name: "profile",
               icon: "heroicons:user",
-              href:"/user-profile"
+              href: "/user-profile"
             },
             {
               name: "Billing",
               icon: "heroicons:megaphone",
-              href:"/dashboard"
+              href: "/dashboard"
             },
             {
               name: "Settings",
               icon: "heroicons:paper-airplane",
-              href:"/dashboard"
+              href: "/dashboard"
             },
             {
               name: "Keyboard shortcuts",
               icon: "heroicons:language",
-              href:"/dashboard"
+              href: "/dashboard"
             },
           ].map((item, index) => (
             <Link
