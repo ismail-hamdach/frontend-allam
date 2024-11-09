@@ -35,7 +35,7 @@ const page = () => {
     const handlePlayAudio = async (text, lang, position) => { // Function to play audio
 
         setAudioIsLoading(position)
-        const response = await fetch('http://allam.tech:8000/tts/synthesize', {
+        const response = await fetch('https://cms.allam.tech/tts/synthesize', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -67,7 +67,7 @@ const page = () => {
     useEffect(() => {
         const fetchVocabulary = async () => {
             try {
-                const response = await fetch('http://allam.tech:8000/language/vocabulary?child_id=1&category=animals&age=12&language_level=biginner', {
+                const response = await fetch('https://cms.allam.tech/language/vocabulary?child_id=1&category=animals&age=12&language_level=biginner', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
