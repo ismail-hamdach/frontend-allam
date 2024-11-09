@@ -102,7 +102,7 @@ const page = () => {
     };
 
     if (isLoading) {
-        return <div>Loading vocabulary...</div>;
+        return <div className="h-screen w-screen flex justify-center items-center"> Loading vocabulary...</div>;
     }
 
     if (error) {

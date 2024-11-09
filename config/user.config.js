@@ -2,7 +2,7 @@ import { api } from "@/config/axios.config";
 
 export const registerUser = async (data) => {
   try {
-    const response = await api.post(process.env.NEXT_CMS_URL + "/auth/local/register", {
+    const response = await api.post(process.env.NEXT_CMS_URL ?? "http://allam.tech:1337" + "/auth/local/register", {
       username: data.username,
       email: data.email,
       password: data.password

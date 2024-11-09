@@ -20,6 +20,8 @@ import twitter from "@/public/images/auth/twitter.png";
 import GithubIcon from "@/public/images/auth/github.png";
 import { SiteLogo } from "@/components/svg";
 import { useMediaQuery } from "@/hooks/use-media-query";
+import { useUserRole } from "@/hooks/use-user-role";
+
 
 const schema = z.object({
   email: z.string().email({ message: "Your email is invalid." }),
@@ -43,11 +45,12 @@ const LogInForm = () => {
   } = useForm({
     resolver: zodResolver(schema),
     mode: "all",
-    defaultValues: {
-      email: "ismailhamdach@gmail.com",
-      password: "test@test",
-    },
+    // defaultValues: {
+    //   email: "ismailhamdach@gmail.com",
+    //   password: "test@test",
+    // },
   });
+  const { userRole } = useUserRole();
   const [isVisible, setIsVisible] = React.useState(false);
 
   const toggleVisibility = () => setIsVisible(!isVisible);
@@ -62,7 +65,9 @@ const LogInForm = () => {
       });
       if (response?.ok) {
         toast.success("Login Successful");
-        window.location.assign("/dashboard");
+        const newDirection = userRole === "child" ? "/advancement" : "/dashboard";
+
+        window.location.assign(newDirection);
         reset();
       } else if (response?.error) {
         toast.error(response?.error);
