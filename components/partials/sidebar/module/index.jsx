@@ -20,7 +20,7 @@ import { Button } from "@/components/ui/button";
 
 const ModuleSidebar = ({ trans }) => {
   const { subMenu, setSubmenu, collapsed, setCollapsed, sidebarBg } =
-  useSidebar();
+    useSidebar();
   const { isRtl } = useThemeStore();
   const [activeIndex, setActiveIndex] = useState(null);
   const [currentSubMenu, setCurrentSubMenu] = useState([]);
@@ -30,8 +30,8 @@ const ModuleSidebar = ({ trans }) => {
   const [menuOverlay, setMenuOverlay] = useState(false);
   const isDesktop = useMediaQuery("(min-width: 1280px)");
   const isMobile = useMediaQuery("(min-width: 768px)");
-  const {userRole} = useUserRole();
-  
+  const { userRole } = useUserRole();
+
   const menus = userRole == "child" ? menusConfig?.sidebarNav?.modern?.child : menusConfig?.sidebarNav?.modern?.parent || [];
   // location
 
@@ -158,7 +158,7 @@ const ModuleSidebar = ({ trans }) => {
         >
           <div className=" pt-4 ">
             <Link href="/dashboard">
-              <SiteLogo className=" mx-auto text-primary h-8 w-8" />
+              <img src="/images/logo/logo_qallam.png" className=" mx-auto text-primary h-8 w-8" />
             </Link>
           </div>
           {/* end logo */}

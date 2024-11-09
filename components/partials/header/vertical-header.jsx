@@ -67,7 +67,7 @@ const VerticalHeader = ({ handleOpenSearch }) => {
 
   const MainLogo = (
     <Link href="/dashboard" className=" text-primary ">
-      <SiteLogo className="h-7 w-7" />
+      <img src="/images/logo/logo_qallam.png" className="h-7 w-7" />
     </Link>
   );
   const SearchButton = (

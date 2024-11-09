@@ -10,7 +10,7 @@ const horizontalHeader = ({ handleOpenSearch }) => {
           href="/dashboard"
           className=" text-primary flex items-center gap-2"
         >
-          <SiteLogo className="h-7 w-7" />
+          <img src="/images/logo/logo_qallam.png" className="h-7 w-7" />
           <span className=" text-xl font-semibold lg:inline-block hidden">
             {" "}
             Allam Education Platform

@@ -56,7 +56,7 @@ const Footer = () => {
             href="/dashboard"
             className="inline-flex items-center gap-4 text-primary-foreground"
           >
-            <SiteLogo className="w-[50px] h-[52px]" />
+            <img src="/images/logo/logo_qallam.png" className="w-[50px] h-[52px]" />
             <span className="text-3xl font-semibold">Allam Education Platform</span>
           </Link>
           <p className="text-base leading-7 text-default-200 dark:text-default-600 text-center mt-3">
