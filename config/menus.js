@@ -58,17 +58,17 @@ export const menusConfig = {
         {
           title: "Alphabet Runner",
           icon: List, // Replace `RunningIcon` with an available alternative
-          href: "/games/alphabet-runner",
+          href: "/games/vocabulary",
         },
         {
           title: "Arabic Story Builder",
           icon: Book, // Book icon for story building
-          href: "/games/arabic-story-builder",
+          href: "/games/story",
         },
         {
           title: "Word Match Adventure",
           icon: Cup, // You can replace `PuzzlePiece` with an icon like `NoteIcon`
-          href: "/games/word-match-adventure",
+          href: "/games/sentences",
         },
         {
           title: "Arabic Grammar Quest",

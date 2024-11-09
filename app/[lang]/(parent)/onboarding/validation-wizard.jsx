@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { Stepper, Step, StepLabel } from "@/components/ui/steps";
+import { useState } from 'react'
 import { toast } from "@/components/ui/use-toast";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,8 +14,25 @@ import {
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 import { useMediaQuery } from "@/hooks/use-media-query";
+import { useSession, signIn, signOut } from "next-auth/react";
+
+
 const ValidationWizard = () => {
   const [activeStep, setActiveStep] = React.useState(0);
+
+  const { data: session, status } = useSession();
+  
+  const [childName, setChildName] = useState('');
+  const [age, setAge] = useState('');
+  const [gender, setGender] = useState('');
+  const [languageProficiency, setLanguageProficiency] = useState('');
+  const [learningStyle, setLearningStyle] = useState('');
+  const [interests, setInterests] = useState('');
+  const [learningPace, setLearningPace] = useState('');
+  const [attentionSpan, setAttentionSpan] = useState('');
+  const [learningFocus, setLearningFocus] = useState('');
+  const [readingAbility, setReadingAbility] = useState('');
+  const [learningTime, setLearningTime] = useState('');
 
   const steps = [
     {
@@ -47,17 +65,59 @@ const ValidationWizard = () => {
     setActiveStep(0);
   };
 
-  const onSubmit = () => {
-    toast({
-      title: "You submitted the following values:",
-      description: (
-        <div className="mt-2 w-[340px] rounded-md bg-slate-950 p-4 top-0 right-0">
-          <p className="text-primary-foreground">Done</p>
-        </div>
-      ),
-    });
-  };
 
+  const onSubmit = async () => {
+
+
+
+    const formData = {
+      fullname: childName,
+      age: parseInt(age, 10), // Convert age to a number, as Strapi expects it as a number type
+      gender,
+      language_level: languageProficiency,
+      prefered_learning_style: learningStyle,
+      interests: {
+        hobbies: interests.split(',').map((hobby) => hobby.trim()), // Assuming `interests` is a comma-separated string; convert to array
+      },
+      learning_pace: learningPace,
+      attention_pace: attentionSpan,
+      focus_on: learningFocus,
+      child_ability: readingAbility,
+      preferred_time: learningTime,
+      parent: session?.user?.name
+    };
+
+
+
+    try {
+      const response = await fetch(process.env.NEXT_CMS_URL ?? "http://allam.tech:1337" + '/api/children', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ data: formData }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+      toast({
+        title: "Submission Successful",
+        description: (
+          <div className="mt-2 w-[340px] rounded-md bg-slate-950 p-4 top-0 right-0">
+            <p className="text-primary-foreground">Data submitted successfully!</p>
+          </div>
+        ),
+      });
+    } catch (error) {
+      toast({
+        title: "Submission Failed",
+        description: error.message,
+      });
+    }
+  };
   const isTablet = useMediaQuery("(max-width: 1024px)");
   return (
     <div className="mt-4">
@@ -121,13 +181,27 @@ const ValidationWizard = () => {
                     </p>
                   </div>
                   <div className="col-span-12 lg:col-span-6">
-                    <Input type="text" placeholder="Child's Name" />
+                    <Input
+                      type="text"
+                      placeholder="Child's Name"
+                      // value={childName}
+                      onChange={(e) => setChildName(e.target.value)}
+                    />
                   </div>
                   <div className="col-span-12 lg:col-span-6">
-                    <Input type="number" placeholder="Age" />
+                    <Input
+                      type="number"
+                      placeholder="Age"
+                      // value={age}
+                      onChange={(e) => setAge(e.target.value)}
+                    />
                   </div>
                   <div className="col-span-12 lg:col-span-6">
-                    <Select>
+                    <Select
+                      // value={gender}
+                      onValueChange={setGender}
+                      onChange={(e) => setGender(e.target.value)}
+                    >
                       <SelectTrigger>
                         <SelectValue placeholder="Gender" />
                       </SelectTrigger>
@@ -139,7 +213,11 @@ const ValidationWizard = () => {
                   </div>
 
                   <div className="col-span-12 lg:col-span-6">
-                    <Select>
+                    <Select
+                      // value={languageProficiency}
+                      onValueChange={setLanguageProficiency}
+                      onChange={(e) => setLanguageProficiency(e.target.value)}
+                    >
                       <SelectTrigger>
                         <SelectValue placeholder="Language Proficiency Level" />
                       </SelectTrigger>
@@ -164,7 +242,11 @@ const ValidationWizard = () => {
                     </p>
                   </div>
                   <div className="col-span-12 lg:col-span-6">
-                    <Select>
+                    <Select
+                      // value={learningStyle}
+                      onValueChange={setLearningStyle}
+                      onChange={(e) => setLearningStyle(e.target.value)}
+                    >
                       <SelectTrigger>
                         <SelectValue placeholder="Preferred Learning Style" />
                       </SelectTrigger>
@@ -177,10 +259,19 @@ const ValidationWizard = () => {
                     </Select>
                   </div>
                   <div className="col-span-12 lg:col-span-6">
-                    <Input type="text" placeholder="Interests and Hobbies" />
+                    <Input
+                      type="text"
+                      placeholder="Interests and Hobbies"
+                      // value={interests}
+                      onChange={(e) => setInterests(e.target.value)}
+                    />
                   </div>
                   <div className="col-span-12 lg:col-span-4">
-                    <Select>
+                    <Select
+                      // value={learningPace}
+                      onValueChange={setLearningPace}
+                      onChange={(e) => setLearningPace(e.target.value)}
+                    >
                       <SelectTrigger>
                         <SelectValue placeholder="Learning Pace" />
                       </SelectTrigger>
@@ -193,7 +284,11 @@ const ValidationWizard = () => {
                   </div>
                   <div className="col-span-12 lg:col-span-8">
 
-                    <Select>
+                    <Select
+                      // value={attentionSpan}
+                      onValueChange={setAttentionSpan}
+                      onChange={(e) => setAttentionSpan(e.target.value)}
+                    >
                       <SelectTrigger>
                         <SelectValue placeholder="Attention Span" />
                       </SelectTrigger>
@@ -219,7 +314,11 @@ const ValidationWizard = () => {
                     </p>
                   </div>
                   <div className="col-span-12 lg:col-span-6">
-                    <Select>
+                    <Select
+                      onValueChange={setLearningTime}
+                      // value={learningFocus}
+                      onChange={(e) => setLearningFocus(e.target.value)}
+                    >
                       <SelectTrigger>
                         <SelectValue placeholder="What would you like your child to focus on?" />
                       </SelectTrigger>
@@ -234,9 +333,14 @@ const ValidationWizard = () => {
                     </Select>
                   </div>
                   <div className="col-span-12 lg:col-span-6">
-                    <Select>
+                    <Select
+                      // value={readingAbility}
+                      onValueChange={setReadingAbility}
+
+                      onChange={(e) => setReadingAbility(e.target.value)}
+                    >
                       <SelectTrigger>
-                        <SelectValue placeholder="What is your child’s current reading and writing ability?" />
+                        <SelectValue placeholder="Reading and Writing Ability" />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="cannot-read-write">Cannot read or write yet</SelectItem>
@@ -247,9 +351,13 @@ const ValidationWizard = () => {
                     </Select>
                   </div>
                   <div className="col-span-12 lg:col-span-12">
-                    <Select>
+                    <Select
+                      // value={learningTime}
+                      onValueChange={setLearningTime}
+                      onChange={(e) => setLearningTime(e.target.value)}
+                    >
                       <SelectTrigger>
-                        <SelectValue placeholder="When does your child prefer to learn?" />
+                        <SelectValue placeholder="Preferred Learning Time" />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="morning">Morning</SelectItem>

@@ -16,9 +16,11 @@ import {
 import { Icon } from "@iconify/react";
 import Image from "next/image";
 import Link from "next/link";
+import { useUserSession } from "@/hooks/use-user-session";
 
 const ProfileInfo = () => {
   const { data: session } = useSession();
+  
   const image = '/images/avatar/profile.png'
   return (
     <DropdownMenu>
