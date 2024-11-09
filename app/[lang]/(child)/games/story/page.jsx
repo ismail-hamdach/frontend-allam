@@ -97,7 +97,6 @@ const page = () => {
                 });
 
                 const img = await response.json().image_base64;
-                alert(img)
                 setImageStroy(img)
             } catch (err) {
                 setError(err.message);
