@@ -18,8 +18,8 @@ const UsersDataTable = ({ users }) => {
         <Table className="border border-default-200">
           <TableHeader>
             <TableRow className="border-b border-default-200">
-              <TableHead className="text-sm h-10 font-medium text-default-800">Top Countries</TableHead>
-              <TableHead className="text-sm h-10 font-medium text-default-800 text-right">Users</TableHead>
+              <TableHead className="text-sm h-10 font-medium text-default-800">Top Activities</TableHead>
+              <TableHead className="text-sm h-10 font-medium text-default-800 text-right"></TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>

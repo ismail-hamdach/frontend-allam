@@ -44,13 +44,13 @@ const ReportsSnapshot = () => {
   const tabsTrigger = [
     {
       value: "all",
-      text: "all user",
+      text: "all words",
       total: "10,234",
       color: "primary",
     },
     {
       value: "event",
-      text: "Event Count",
+      text: "Stories Count",
       total: "536",
       color: "warning",
     },
@@ -62,7 +62,7 @@ const ReportsSnapshot = () => {
     },
     {
       value: "newuser",
-      text: "New User",
+      text: "New words",
       total: "3321",
       color: "info",
     },
@@ -98,7 +98,7 @@ const ReportsSnapshot = () => {
               Reports Snapshot
             </div>
             <span className="text-xs text-default-600">
-              Demographic properties of your customer
+              Words distribution
             </span>
           </div>
           <div className="flex-none">
