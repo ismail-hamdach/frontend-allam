@@ -12,7 +12,7 @@ const page = () => {
     useEffect(() => {
         const fetchVocabulary = async () => {
             try {
-                const response = await fetch('http://localhost:8000/language/sentence', {
+                const response = await fetch('https://cms.allam.tech/language/sentence', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

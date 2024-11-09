@@ -56,7 +56,7 @@ const ProfileInfo = () => {
               href="/dashboard"
               className="text-xs text-default-600 hover:text-primary"
             >
-              @uxuidesigner
+              
             </Link>
           </div>
         </DropdownMenuLabel>
@@ -75,11 +75,6 @@ const ProfileInfo = () => {
             {
               name: "Settings",
               icon: "heroicons:paper-airplane",
-              href: "/dashboard"
-            },
-            {
-              name: "Keyboard shortcuts",
-              icon: "heroicons:language",
               href: "/dashboard"
             },
           ].map((item, index) => (
